@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2023-03-23T00:04:21Z"
+  generation: 6
+  labels:
+    app: argo-app
+  name: argo-app
+  namespace: default
+  resourceVersion: "6895156"
+  uid: d02cfb6c-7c78-425b-8704-d2e990921891
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: argo-app
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: argo-app
+    spec:
+      containers:
+      - image: bendevet/user-detail:v2
+        imagePullPolicy: IfNotPresent
+        name: user-detail
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2023-03-23T00:04:21Z"
+    lastUpdateTime: "2023-03-23T00:07:34Z"
+    message: ReplicaSet "argo-app-76b6bbd759" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2023-03-23T00:46:57Z"
+    lastUpdateTime: "2023-03-23T00:46:57Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  observedGeneration: 6
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2

@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-03-23T00:11:54Z"
+  labels:
+    app: argo-app
+  name: argo-app
+  namespace: default
+  resourceVersion: "6894641"
+  uid: b0096263-e6c6-41db-93e8-68fc4ae13983
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.110.78.113
+  clusterIPs:
+  - 10.110.78.113
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32648
+    port: 6000
+    protocol: TCP
+    targetPort: 6000
+  selector:
+    app: argo-app
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 127.0.0.1
